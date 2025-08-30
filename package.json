@@ -1,0 +1,44 @@
+{
+  "name": "pdf-extract",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.878.0",
+    "@aws-sdk/s3-request-presigner": "^3.878.0",
+    "@google/generative-ai": "^0.24.1",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^9.34.0",
+    "eslint-config-next": "^15.5.2",
+    "mongodb": "^6.19.0",
+    "mongoose": "^8.18.0",
+    "multer": "^2.0.2",
+    "next": "^15.5.2",
+    "pdf-parse": "^1.1.1",
+    "pdf2pic": "^3.2.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-dropzone": "^14.3.8",
+    "typescript": "^5.9.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/pdf-parse": "^1.1.5",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}
