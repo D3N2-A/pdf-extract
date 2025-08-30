@@ -28,7 +28,6 @@
     "multer": "^2.0.2",
     "next": "^15.5.2",
     "pdf-parse": "^1.1.1",
-    "pdf2pic": "^3.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-dropzone": "^14.3.8",

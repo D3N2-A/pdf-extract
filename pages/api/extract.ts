@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { GetObjectCommand } from "@aws-sdk/client-s3";
-import pdfParse from "pdf-parse";
 import r2Client from "@/lib/r2-client";
 import { DocumentService } from "@/lib/database";
+import geminiOCR from "@/lib/gemini-ocr";
 
 export default async function handler(
   req: NextApiRequest,
@@ -30,6 +30,7 @@ export default async function handler(
         success: true,
         message: "Document already extracted",
         extractedText: document.extractedText,
+        patientData: document.patientData || { name: null, dateOfBirth: null },
       });
     }
 
@@ -43,18 +44,26 @@ export default async function handler(
     const response = await r2Client.send(getCommand);
     const pdfBuffer = await streamToBuffer(response.Body as any);
 
-    const pdfData = await pdfParse(pdfBuffer);
-    const extractedText = pdfData.text;
+    const ocrResult = await geminiOCR.extractTextFromPDF(pdfBuffer);
+
+    if (!ocrResult.success) {
+      throw new Error(`OCR failed: ${ocrResult.error}`);
+    }
+
+    const extractedText = ocrResult.extractedText;
 
     await DocumentService.updateDocumentStatus(
       documentId,
       "completed",
-      extractedText
+      extractedText,
+      undefined,
+      ocrResult.patientData
     );
 
     res.status(200).json({
       success: true,
       extractedText,
+      patientData: ocrResult.patientData || { name: null, dateOfBirth: null },
     });
   } catch (error) {
     console.error("Extraction error:", error);
