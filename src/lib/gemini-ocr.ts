@@ -100,4 +100,5 @@ class GeminiOCRService {
   }
 }
 
-export default new GeminiOCRService();
+const geminiOCRService = new GeminiOCRService();
+export default geminiOCRService;
