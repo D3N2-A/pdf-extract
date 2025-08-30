@@ -2,6 +2,10 @@
 
 A Next.js application for uploading PDF files and extracting their text content using Cloudflare R2 for storage and MongoDB for document metadata.
 
+## Architecture
+<img width="2904" height="2060" alt="Architechture-2025-08-29-2229" src="https://github.com/user-attachments/assets/802cb542-e6d9-4565-9d45-e0212b451b96" />
+
+
 ## Features
 
 - Drag-and-drop PDF file upload
